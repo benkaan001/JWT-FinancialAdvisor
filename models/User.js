@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -23,5 +24,13 @@ const UserSchema = new mongoose.Schema({
     }
     
 })
+// add mongoose 'pre' middleware !!!!!!!! use function expression NOT => this !!!!!!!
+// no need to pass in next as long as we are using async/await syntax per docs
+UserSchema.pre('save', async function(next){    
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next()
+})
+
 const User = mongoose.model('User', UserSchema);
 module.exports = User;

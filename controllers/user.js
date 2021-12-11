@@ -9,12 +9,7 @@ const register = async (req, res) => {
     throw new BadRequestError("Please provide name, email, and password!");
   }
 
-  const salt = await bycrypt.genSalt(10);
-  const hashedPassword = await bycrypt.hash(password, salt)
-  
-  const tempUser = {name,email,password:hashedPassword}
-
-  const user = await User.create({ ...tempUser });
+  const user = await User.create({ ...req.body });
   res.status(StatusCodes.CREATED).json({user});
 };
 

@@ -12,18 +12,21 @@ const userRoutes = require('./routes/user');
 const prospectsRoutes = require('./routes/prospects')
 
 
-const errorHandlerMiddleware = require('./middleware/error-handler');
-const notFoundMiddleware = require('./middleware/not-found')
+
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true }));
+app.use(express.urlencoded({extended: false }));
 
-app.use(errorHandlerMiddleware);
-app.use(notFoundMiddleware);
+
 
 // routes
 app.use('/api/v1/user', userRoutes )
 app.use('/api/v1/prospects', prospectsRoutes)
+
+const errorHandlerMiddleware = require('./middleware/error-handler');
+const notFoundMiddleware = require('./middleware/not-found')
+app.use(errorHandlerMiddleware);
+app.use(notFoundMiddleware);
 
 
 const port = process.env.PORT || 3000;

@@ -1,10 +1,25 @@
-const register = async(req,res) => {
-    res.send('register user');
-}
+const User = require("../models/User");
+const { StatusCodes } = require("http-status-codes");
+const { BadRequestError } = require("../errors");
+const bycrypt = require("bcryptjs");
 
-const login = async (req,res) => {
-    res.send('login user');
+const register = async (req, res) => {
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
+    throw new BadRequestError("Please provide name, email, and password!");
+  }
 
-}
+  const salt = await bycrypt.genSalt(10);
+  const hashedPassword = await bycrypt.hash(password, salt)
+  
+  const tempUser = {name,email,password:hashedPassword}
 
-module.exports = {register, login}
+  const user = await User.create({ ...tempUser });
+  res.status(StatusCodes.CREATED).json({user});
+};
+
+const login = async (req, res) => {
+  res.send("login user");
+};
+
+module.exports = { register, login };

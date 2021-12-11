@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const dateFormatter = require();
+const dateFormatter = require('../utils/dateFormatter');
 
 const ProspectSchema = new mongoose.Schema({
     name: {

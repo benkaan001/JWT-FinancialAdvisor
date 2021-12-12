@@ -6,6 +6,7 @@ require('express-async-errors');
 
 // DB connection
 const connectDB = require('./db/connect');
+const isAuthenticated = require('./middleware/authentication')
 
 // routers
 const userRoutes = require('./routes/user');
@@ -21,7 +22,7 @@ app.use(express.urlencoded({extended: false }));
 
 // routes
 app.use('/api/v1/user', userRoutes )
-app.use('/api/v1/prospects', prospectsRoutes)
+app.use('/api/v1/prospects', isAuthenticated, prospectsRoutes)
 
 const errorHandlerMiddleware = require('./middleware/error-handler');
 const notFoundMiddleware = require('./middleware/not-found')

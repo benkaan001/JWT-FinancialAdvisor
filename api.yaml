@@ -1,0 +1,231 @@
+openapi: 3.0.0
+info:
+  title: financial-advisor-API
+  contact:
+    name: ben
+    url: https://github.com/benkaan001
+    email: benkaan001@gmail.com
+  version: '1.0'
+servers:
+- url: https://financial-advisor-api.herokuapp.com/api/v1
+  variables: {}
+paths:
+  /user/register:
+    post:
+      tags:
+      - Authentication
+      summary: Register USER
+      operationId: RegisterUSER
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUSERRequest'
+            example:
+              name: user2
+              email: user2@test.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /user/login:
+    post:
+      tags:
+      - Authentication
+      summary: Login USER
+      operationId: LoginUSER
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginUSERRequest'
+            example:
+              email: user2@test.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /prospects:
+    post:
+      tags:
+      - Prospects
+      summary: Create PROSPECT
+      operationId: CreatePROSPECT
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePROSPECTRequest'
+            example:
+              name: client400
+              portfolioValue: 4000000
+              netWorth: 8000000
+              status: meeting held
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+      - Prospects
+      summary: Get ALL  PROSPECTS
+      operationId: GetALLPROSPECTS
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /prospects/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The prospect ID.
+    get:
+      tags:
+      - Prospects
+      summary: Get  PROSPECT by id
+      operationId: GetPROSPECTbyid
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+      - Prospects
+      summary: Update PROSPECT
+      operationId: UpdatePROSPECT
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePROSPECTRequest'
+            example:
+              name: client1
+              portfolioValue: 900000
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  
+    delete:
+      tags:
+      - Prospects
+      summary: Delete PROSPECT
+      operationId: DeletePROSPECT
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    RegisterUSERRequest:
+      title: RegisterUSERRequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: user2
+        email: user2@test.com
+        password: secret
+    LoginUSERRequest:
+      title: LoginUSERRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: user2@test.com
+        password: secret
+    CreatePROSPECTRequest:
+      title: CreatePROSPECTRequest
+      required:
+      - name
+      - portfolioValue
+      - netWorth
+      - status
+      type: object
+      properties:
+        name:
+          type: string
+        portfolioValue:
+          type: integer
+          format: int32
+        netWorth:
+          type: integer
+          format: int32
+        status:
+          type: string
+      example:
+        name: client400
+        portfolioValue: 4000000
+        netWorth: 8000000
+        status: meeting held
+    UpdatePROSPECTRequest:
+      title: UpdatePROSPECTRequest
+      required:
+      - name
+      - portfolioValue
+      type: object
+      properties:
+        name:
+          type: string
+        portfolioValue:
+          type: integer
+          format: int32
+      example:
+        name: client1
+        portfolioValue: 900000
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+- httpBearer: []
+tags:
+
+- name: Authentication
+  description: ''
+- name: Prospects
+  description: ''

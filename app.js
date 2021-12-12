@@ -36,7 +36,7 @@ app.use(xss());
 
 //dummy route for Heroku deployment test
 app.get('/', (req,res) => {
-    res.send(<h2>Financial Advisor API</h2>)
+    res.send('Financial Advisor API')
 })
 
 

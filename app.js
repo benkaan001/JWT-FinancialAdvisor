@@ -34,12 +34,6 @@ app.use(cors());
 app.use(helmet());
 app.use(xss());
 
-//dummy route for Heroku deployment test
-app.get('/', (req,res) => {
-    res.send('Financial Advisor API')
-})
-
-
 // routes
 app.use('/api/v1/user', userRoutes )
 app.use('/api/v1/prospects', isAuthenticated, prospectsRoutes)

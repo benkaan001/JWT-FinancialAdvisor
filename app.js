@@ -38,6 +38,11 @@ app.use(xss());
 app.use('/api/v1/user', userRoutes )
 app.use('/api/v1/prospects', isAuthenticated, prospectsRoutes)
 
+//dummy route
+app.get('/', (req, res) => {
+    res.send('financialAdvisorAPI');
+  });
+
 const errorHandlerMiddleware = require('./middleware/error-handler');
 const notFoundMiddleware = require('./middleware/not-found')
 app.use(errorHandlerMiddleware);

@@ -28,11 +28,16 @@ app.use(limiter({
 }));
 
 app.use(express.json());
-// app.use(express.urlencoded({extended: false }));
+
+
 app.use(cors());
 app.use(helmet());
 app.use(xss());
 
+//dummy route for Heroku deployment test
+app.get('/', (req,res) => {
+    res.send(<h2>Financial Advisor API</h2>)
+})
 
 
 // routes

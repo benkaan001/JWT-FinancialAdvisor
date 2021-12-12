@@ -49,5 +49,11 @@ UserSchema.methods.generateToken = function () {
   );
 };
 
+// compare passwords
+UserSchema.methods.comparePassword = async function (rawPassword) {
+  const isMatching = await bcrypt.compare(rawPassword, this.password);
+  return isMatching;
+};
+
 const User = mongoose.model("User", UserSchema);
 module.exports = User;

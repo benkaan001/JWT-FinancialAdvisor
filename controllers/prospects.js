@@ -1,12 +1,22 @@
+const Prospect = require("../models/Prospect");
+const { BadRequestError } = require("../errors");
+const { StatusCodes } = require("http-status-codes");
+
 const getAllProspects = async (req, res) => {
-  res.send("get all prospects");
+  const prospects = await Prospect.find({ createdBy: req.user.userId }).sort(
+    "status")
+  res.status(StatusCodes.OK).json({ prospects });
 };
+
 const getProspect = async (req, res) => {
   res.send("get single prospect");
 };
 const createProspect = async (req, res) => {
-  res.send("create prospect");
+  req.body.createdBy = req.user.userId;
+  const prospect = await Prospect.create(req.body);
+  res.status(StatusCodes.CREATED).json({ prospect });
 };
+
 const updateProspect = async (req, res) => {
   res.send("update single prospect");
 };

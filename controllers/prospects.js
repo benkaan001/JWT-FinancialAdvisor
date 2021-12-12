@@ -19,7 +19,7 @@ const getProspect = async (req, res) => {
     createdBy: userId,
   });
   if (!prospect) {
-    throw new NotFoundError(`No prospect found with this ${prospectId}`);
+    throw new NotFoundError(`No prospect found with this ID: ${prospectId}`);
   }
   res.status(StatusCodes.OK).json({ prospect });
 };
@@ -51,7 +51,7 @@ const updateProspect = async (req, res) => {
   );
 
   if (!prospect) {
-    throw new NotFoundError(`No prospect found with this ${prospectId}`);
+    throw new NotFoundError(`No prospect found with this ID: ${prospectId}`);
   }
   res.status(StatusCodes.OK).json({ prospect });
 };
@@ -66,7 +66,7 @@ const deleteProspect = async (req, res) => {
     createdBy: userId,
   });
   if (!prospect) {
-    throw new NotFoundError(`No prospect found with this ${prospectId}`);
+    throw new NotFoundError(`No prospect found with this ID: ${prospectId}`);
   }
   res.status(StatusCodes.OK).json({ msg: `${prospect.name} successfully deleted!` });
 };

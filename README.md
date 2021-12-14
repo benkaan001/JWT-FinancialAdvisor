@@ -38,14 +38,14 @@
 
   `git clone https://github.com/benkaan001/JWT-FinancialAdvisorAPI`
 
-  In root directory of the application create `.env` file with the following variables:
+  In the root of the application, create a `.env` file with the following three variables:
 
   `MONGO_URI` && `JWT_SECRET` && `JWT_EXPIRATION` 
 
 
-  `npm install` to install the dependencies highlighted in `package.json` file.
+  Run `npm install` to install the dependencies highlighted in `package.json` file.
 
-  `npm start` to start the application.
+  Finally, run `npm start` to start the application.
 
 
 
@@ -54,9 +54,9 @@
 
   You can access the deployed API documentation hosted in SwaggerHub [here](https://financial-advisor-api.herokuapp.com/api-docs/#/).
 
-  ![image]()
+  ![image](https://github.com/benkaan001/JWT-FinancialAdvisorAPI/blob/main/assets/Screen%20Shot%202021-12-13%20at%203.14.00%20AM.png)
 
-  ![gif]()
+  ![demo gif](https://github.com/benkaan001/JWT-FinancialAdvisorAPI/blob/main/assets/financial-advisor-API.gif)
 
 
 

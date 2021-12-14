@@ -42,7 +42,7 @@ app.use(xss());
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/prospects", isAuthenticated, prospectsRoutes);
 
-//dummy route
+// HEROKU doc route
 app.get("/", (req, res) => {
   res.send(
     '<h2>Financial Advisor API</h2> <a href="/api-docs">Documentation</a>'
